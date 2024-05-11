@@ -50,10 +50,14 @@ const createPreference = asyncHandler(async (req, res) => {
  * @access Private
 **/
 const updatePreference = asyncHandler(async (req, res) => {
-    const { id, favorites, ingredients } = req.body;
+    const { id, diets, allergies, favorites, ingredients } = req.body;
 
     if (!id) {
         return res.status(400).json({ message: "Se requiere identificación de preferencia" });
+    }
+
+    if(diets && diets.length < 1) {
+        return res.status(400).json({ message: "Debe existir al menos una preferencia de Dieta"});
     }
 
     if (favorites && favorites.length < 2) {
@@ -69,6 +73,8 @@ const updatePreference = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "No se encuentra preferencia" });
     }
 
+    preference.diets = diets;
+    preference.allergies = allergies;
     preference.favorites = favorites;
     preference.ingredients = ingredients;
     await preference.save();
