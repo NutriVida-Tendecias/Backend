@@ -7,7 +7,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const serverless = require("serverless-http");
 const corsOptions = require("./config/corsOptions");
-const connectDb = require("./config/connectDb");
+const connectDb = require("./config/connectDB");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
