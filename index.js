@@ -39,10 +39,4 @@ app.all("*", (req, res) => {
 });
 
 // Iniciar servidor
-if (process.env.ENVIRONMENT === "serverless") {
-    module.exports.handler = serverless(app);
-} else {
-    app.listen(PORT, () => {
-        console.log(`Servidor Express escuchando en el puerto ${PORT}`);
-    });
-}
+serverless(app);
