@@ -39,4 +39,4 @@ app.all("*", (req, res) => {
 });
 
 // Iniciar servidor
-serverless(app);
+module.exports.handler = serverless(app);
